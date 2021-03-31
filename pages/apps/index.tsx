@@ -55,7 +55,7 @@ export default function Apps({
 
 export const getStaticProps: GetStaticProps = async () => {
   const recentlyUpdated = await fetchCollection(
-    Collections.recenltyUpdated,
+    Collections.recentlyUpdated,
     APPS_IN_PREVIEW_COUNT
   )
   const editorsChoiceApps = await fetchCollection(

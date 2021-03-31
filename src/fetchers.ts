@@ -24,7 +24,7 @@ export default async function fetchCollection (collection: Collection, count?: n
     case Collections.popular:
       collectionURL = POPULAR_URL
       break
-    case Collections.recenltyUpdated:
+    case Collections.recentlyUpdated:
       collectionURL = RECENTLY_UPDATED_URL
       break
     case Collections.editorsApps:

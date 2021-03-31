@@ -16,7 +16,7 @@ export default function RecentlyUpdatedApps({ applications }) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const applications: Appstream[] = await fetchCollection(
-    Collections.recenltyUpdated
+    Collections.recentlyUpdated
   )
   applications.sort((a, b) => a.name.localeCompare(b.name))
 
