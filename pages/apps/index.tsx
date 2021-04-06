@@ -21,26 +21,23 @@ export default function Apps({
       <div className='applications-collection'>
         <div className='collection'>
           <ApplicationSection
-            key='updated'
-            title='New & Updated Apps'
-            applications={recentlyUpdated}
-            href='/apps/collection/recently-updated'
-          />
-
-          <ApplicationSection
             key='popular'
             title='Popular Apps'
             applications={popular}
             href='/apps/collection/popular'
           />
-
+          <ApplicationSection
+            key='updated'
+            title='New & Updated Apps'
+            applications={recentlyUpdated}
+            href='/apps/collection/recently-updated'
+          />
           <ApplicationSection
             key='editor_choice'
             title="Editor's Choice Apps"
             applications={editorsChoiceApps}
             href='/apps/collection/editors-choice-apps'
           />
-
           <ApplicationSection
             key='editor_choice_games'
             title="Editor's Choice Games"

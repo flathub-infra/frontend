@@ -29,16 +29,10 @@ export default function Home({
       </Head>
       <div className='main-container'>
         <ApplicationSection
-          key='editor_choice'
-          title="Editor's Picks"
-          applications={editorsChoiceApps}
-          href='/apps/collection/editors-choice-apps'
-        />
-        <ApplicationSection
-          key='editor_choice_games'
-          title="Editor's Picks Games"
-          applications={editorsChoiceGames}
-          href='/apps/collection/editors-choice-games'
+          key='popular'
+          title='Most Popular'
+          applications={popular}
+          href='/apps/collection/popular'
         />
         <ApplicationSection
           key='updated'
@@ -47,10 +41,16 @@ export default function Home({
           href='/apps/collection/recently-updated'
         />
         <ApplicationSection
-          key='popular'
-          title='Most Popular'
-          applications={popular}
-          href='/apps/collection/popular'
+          key='editor_choice'
+          title="Editor's Choice Apps"
+          applications={editorsChoiceApps}
+          href='/apps/collection/editors-choice-apps'
+        />
+        <ApplicationSection
+          key='editor_choice_games'
+          title="Editor's Choice Games"
+          applications={editorsChoiceGames}
+          href='/apps/collection/editors-choice-games'
         />
         <CategoriesList />
       </div>
