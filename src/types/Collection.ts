@@ -1,6 +1,6 @@
 enum Collections {
   popular = "Popular",
-  recentlyUpdated = "Recenlty Updated",
+  recentlyUpdated = "Recently Updated",
   editorsApps = "Editors Picks Apps",
   editorsGames = "Editors Picks Games"
 }
