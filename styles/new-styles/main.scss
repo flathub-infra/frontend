@@ -62,7 +62,6 @@ header nav {
 
 .main-container {
   margin: 0 auto;
-  max-width: 90%;
 }
 
 header#main-header {
@@ -130,7 +129,6 @@ header#main-header {
 .categories-section {
   header {
     margin-top: 40px;
-    max-width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -147,7 +145,6 @@ header#main-header {
   .applications,
   .categories {
     display: grid;
-    gap: 4px;
     grid-template-columns: 1fr;
     justify-content: space-around;
   }
@@ -170,7 +167,10 @@ header#main-header {
 
 .application-card {
   background-color: white;
-  grid-column: span 1 / span 1;
+  max-width: 360px;
+  margin: 4px;
+  height: 90px;
+  border-radius: 8px;
 
   border: 1px solid $border;
   display: flex;
@@ -181,25 +181,23 @@ header#main-header {
   }
 
   .logo {
+    width: 100px;
     display: flex;
-    justify-content: center;
-    align-items: center;
 
     img {
       filter: drop-shadow(0 0.08rem 0.1rem rgba(0, 0, 0, 0.25))
         drop-shadow(0 0.4rem 0.7rem rgba(0, 0, 0, 0.14));
+      width: 64px;
+      height: 64px;
       display: block;
-      margin: 3rem auto;
+      margin: 0 auto;
       align-self: center;
     }
   }
 
   .summary {
-    color: white;
-    background-color: $glassGrey ;
-    padding: 0  16px;
-    width: 100%;
-    height: 60px;
+    color: $dark;
+    width: calc(100% - 100px);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -212,6 +210,7 @@ header#main-header {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      width: 180px;
     }
 
     p {
@@ -221,6 +220,7 @@ header#main-header {
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+      width: 250px;
     }
   }
 }
