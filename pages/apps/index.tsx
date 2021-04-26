@@ -18,7 +18,7 @@ export default function Apps({
       <Head>
         <title>Flathub—An app store and build service for Linux</title>
       </Head>
-      <div className='applications-collection'>
+      <div className='applications-collection main-container'>
         <div className='collection'>
           <ApplicationSection
             key='popular'

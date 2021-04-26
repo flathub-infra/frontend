@@ -28,6 +28,13 @@ export default function Home({
         <link rel='icon' type='image/png' href='./favicon.png' />
       </Head>
       <div className='main-container'>
+        <h1>
+          Apps for Linux, right here
+        </h1>
+        <p className="">Welcome to Flathub, the home of hundreds of apps which can be easily installed on any Linux distribution. Browse the apps online, from your app center or the command line.</p>
+        <div className="">
+          <a href="https://flatpak.org/setup/" className="">Quick setup</a>
+        </div>
         <ApplicationSection
           key='popular'
           title='Most Popular'
@@ -52,7 +59,6 @@ export default function Home({
           applications={editorsChoiceGames}
           href='/apps/collection/editors-choice-games'
         />
-        <CategoriesList />
       </div>
     </Main>
   )
