@@ -1,7 +1,7 @@
 @import 'colors';
 
 main#wrapper {
-  background-color: $bg-color;
+  background-color: white;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,8 +50,9 @@ header nav {
     .nav-item {
       padding: 2px 20px;
       color: white;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 14px;
+      font-weight: 500;
+      text-transform: uppercase;
 
       &:hover {
         cursor: pointer;
@@ -63,13 +64,26 @@ header nav {
 .main-container {
   margin: 0 auto;
   max-width: 90%;
-}
 
-header#main-header {
-  padding-top: 40px;
+  h1 {
+    font-weight: 300;
+    font-size: 250%;
+  }
 
-  h2 {
-    font-size: 22pt;
+  p.introduction {
+    margin-bottom: 40px;
+    font-size: 110%;
+    font-weight: 300;
+    max-width: 700px;
+  }
+
+  .intro-links {
+    display: flex;
+    flex-direction: row;
+
+    .primary-button:last-child {
+      margin-left: 10px;
+    }
   }
 }
 
@@ -116,11 +130,34 @@ header#main-header {
     width: 100%;
 
     h2 {
-      font-size: 2rem;
+      font-size: 180%;
+      line-height: 1.1;
+      font-weight: 300;
       line-height: 2;
       margin-top: 0;
       margin-bottom: 0;
-      font-weight: 900;
+    }
+  }
+}
+
+.collection-wrapper {
+  display: flex;
+  flex-direction: row;
+
+  aside {
+    display: flex;
+    flex-direction: column;
+
+    .side-menu-section {
+      display: flex;
+      flex-direction: column;
+
+      h3 {
+        font-size: 110%;
+        line-height: 1;
+        font-weight: 300;
+        text-transform: uppercase;
+      }
     }
   }
 }
@@ -136,9 +173,9 @@ header#main-header {
     justify-content: space-between;
 
     h3 {
-      font-size: 1.2rem;
-      line-height: 2;
-      font-weight: 900;
+      font-size: 180%;
+      line-height: 1.1;
+      font-weight: 300;
       margin-top: 0;
       margin-bottom: 0;
     }
@@ -184,6 +221,7 @@ header#main-header {
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 224px;
 
     img {
       filter: drop-shadow(0 0.08rem 0.1rem rgba(0, 0, 0, 0.25))
@@ -241,9 +279,10 @@ header#main-header {
       display: flex;
       margin: 10px;
       align-self: center;
+      height: 224px;
 
       img {
-        width: 128px;
+        max-width: 128px;
         margin: auto;
         margin-top: 0;
         align-items: center;

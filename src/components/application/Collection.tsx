@@ -1,8 +1,10 @@
 import { FunctionComponent } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 
 import Appstream from '../../types/Appstream'
+import Category from '../../types/Category'
 
 import ApplicationCard from '../application/Card'
 import Main from '../layout/Main'
@@ -34,8 +36,33 @@ const ApplicationCollection: FunctionComponent<Props> = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <div className='main-container'>
-        <div className='applications-collection'>
+      <div className='collection-wrapper'>
+        <aside>
+          <section className="side-menu-section">
+            <h3>Discover</h3>
+            <Link href='/apps/collection/popular'>
+              <span className='side-menu-link'>Popular</span>
+            </Link>
+            <Link href='/apps/collection/recently-updated'>
+              <span className='side-menu-link'>New &amp; Updated</span>
+            </Link>
+            <Link href='/apps/collection/editors-choice-apps'>
+              <span className='side-menu-link'>Editor's Choice</span>
+            </Link>
+            <Link href='/apps/collection/editors-choice-games'>
+              <span className='side-menu-link'>Editor's Choice Gamess</span>
+            </Link>
+          </section>
+          <section className="side-menu-section">
+            <h3>Categories</h3>
+            {Object.keys(Category).map(category => (
+              <Link href={`/apps/category/${category}`} key={category}>
+                <span className='side-menu-link'>{category}</span>
+              </Link>
+            ))}
+          </section>
+        </aside>
+        <section className='applications-collection'>
           <div className='collection'>
             <h2>{title}</h2>
             <p>{applications.length} results</p>
@@ -48,7 +75,7 @@ const ApplicationCollection: FunctionComponent<Props> = ({
 
             <Pagination pages={pages} currentPage={page} />
           </div>
-        </div>
+        </section>
       </div>
     </Main>
   )

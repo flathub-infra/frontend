@@ -21,9 +21,8 @@ const ApplicationSection: FunctionComponent<Props> = ({
       <h3>{title}</h3>
 
       <Link href={href}>
-        <button className='show-all-button'>
+        <button className='primary-button'>
           <div>Show All</div>
-          <img src='/go-next.svg' alt='Next' />
         </button>
       </Link>
     </header>

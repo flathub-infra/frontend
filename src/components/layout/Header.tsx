@@ -49,6 +49,10 @@ const Header = () => {
         </div>
 
         <div id='navbar'>
+          <Link href='/apps'>
+            <div className='nav-item'>Applications</div>
+          </Link>
+
           <div className='nav-item'>
             <a href='https://github.com/flathub/flathub/wiki/App-Submission'>
               Publish

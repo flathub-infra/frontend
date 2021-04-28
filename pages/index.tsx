@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 
-import CategoriesList from '../src/components/categories/List'
 import Collections from '../src/types/Collection'
 import ApplicationSection from '../src/components/application/Section'
 import Main from '../src/components/layout/Main'
@@ -28,12 +28,19 @@ export default function Home({
         <link rel='icon' type='image/png' href='./favicon.png' />
       </Head>
       <div className='main-container'>
-        <h1>
-          Apps for Linux, right here
-        </h1>
-        <p className="">Welcome to Flathub, the home of hundreds of apps which can be easily installed on any Linux distribution. Browse the apps online, from your app center or the command line.</p>
-        <div className="">
-          <a href="https://flatpak.org/setup/" className="">Quick setup</a>
+        <h1>Apps for Linux, right here</h1>
+        <p className='introduction'>
+          Welcome to Flathub, the home of hundreds of apps which can be easily
+          installed on any Linux distribution. Browse the apps online, from your
+          app center or the command line.
+        </p>
+        <div className='intro-links'>
+          <a href='https://flatpak.org/setup/' className='primary-button'>
+            Quick setup
+          </a>
+          <Link href='/apps'>
+            <div className='primary-button'>Browse the apps</div>
+          </Link>
         </div>
         <ApplicationSection
           key='popular'

@@ -6,7 +6,7 @@ import Collections from '../../../src/types/Collection'
 import Appstream from '../../../src/types/Appstream'
 
 export default function PopularApps({ applications }) {
-  return <ApplicationCollection title='Popular' applications={applications} />
+  return <ApplicationCollection title='Popular Apps' applications={applications} />
 }
 
 export const getStaticProps: GetStaticProps = async () => {
