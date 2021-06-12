@@ -29,7 +29,7 @@ const Details: FunctionComponent<Props> = ({ data }) => {
 
           <div className='details'>
             <h2>{data.name}</h2>
-            <div className='developer'>{data.developer_name || '-'}</div>
+            <div className='app-summary'>{data.summary}</div>
           </div>
 
           <div className='install'>
@@ -80,7 +80,6 @@ const Details: FunctionComponent<Props> = ({ data }) => {
             ))}
         </Carousel>
         <div className='container'>
-          <h3 className='summary'>{data.summary}</h3>
           <p
             className='description'
             dangerouslySetInnerHTML={{ __html: data.description }}
