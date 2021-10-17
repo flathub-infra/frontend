@@ -22,7 +22,7 @@ const ApplicationCollection: FunctionComponent<Props> = ({
   perPage = 32,
 }) => {
   const router = useRouter()
-  const page = parseInt(router.query.page as string, 2) || 1
+  const page = parseInt(router.query.page as string) ?? 1
   const totalPages = Math.ceil(applications.length / perPage)
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
@@ -50,9 +50,7 @@ const ApplicationCollection: FunctionComponent<Props> = ({
               <span className='side-menu-link'>Editor&apos;s Choice</span>
             </Link>
             <Link href='/apps/collection/editors-choice-games' passHref>
-              <span className='side-menu-link'>
-                Editor&apos;s Choice Gamess
-              </span>
+              <span className='side-menu-link'>Editor&apos;s Choice Games</span>
             </Link>
           </section>
           <section className='side-menu-section'>
