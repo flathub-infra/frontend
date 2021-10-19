@@ -16,6 +16,10 @@ header nav {
 
   height: 64px;
 
+  a {
+    color: inherit;
+  }
+
   #brand {
     margin: auto 0;
     margin-left: 26px;
@@ -65,10 +69,29 @@ header nav {
   margin: 0 auto;
   max-width: 90%;
 
+  &.center {
+    max-width: 600px;
+  }
+
   h1 {
     margin-top: 100pxf;
     font-weight: 300;
     font-size: 250%;
+  }
+
+  h3 {
+    font-weight: 300;
+    font-size: 120%;
+  }
+
+  h6 {
+    font-weight: 400;
+    font-size: 70%;
+  }
+
+  .hint {
+    margin-top: 0.5em !important;
+    color: grey;
   }
 
   p.introduction {
@@ -222,8 +245,8 @@ header nav {
       background-color: $glassGrey;
     }
 
-    .summary {background-color: $hoverGlassGrey;
-
+    .summary {
+      background-color: $hoverGlassGrey;
     }
   }
 
@@ -244,8 +267,8 @@ header nav {
 
   .summary {
     color: white;
-    background-color: $glassGrey ;
-    padding: 0  16px;
+    background-color: $glassGrey;
+    padding: 0 16px;
     width: 100%;
     height: 60px;
     display: flex;
@@ -533,6 +556,10 @@ footer#footer {
   padding: 48px;
   margin-top: 60px;
   justify-content: center;
+
+  a {
+    color: inherit;
+  }
 
   .footer-section {
     margin: 12px;
