@@ -4,13 +4,13 @@ import Footer from './Footer'
 import Header from './Header'
 
 const Main: FunctionComponent = ({ children }) => (
-  <main id='wrapper'>
+  <div id='wrapper'>
     <Header />
 
-    <div>{children}</div>
+    <main>{children}</main>
 
     <Footer />
-  </main>
+  </div>
 )
 
 export default Main
