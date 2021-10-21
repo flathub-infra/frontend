@@ -1,5 +1,6 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 
 const Header = () => {
@@ -28,8 +29,8 @@ const Header = () => {
     <header>
       <nav>
         <div id='brand'>
-          <Link href='/'>
-            <img
+          <Link href='/' passHref>
+            <Image
               src='https://flathub.org/assets/themes/flathub/flathub-logo-toolbar.svg'
               alt='Flathub'
             />
@@ -49,7 +50,7 @@ const Header = () => {
         </div>
 
         <div id='navbar'>
-          <Link href='/apps'>
+          <Link href='/apps' passHref>
             <div className='nav-item'>Applications</div>
           </Link>
 
@@ -63,7 +64,7 @@ const Header = () => {
             <a href='https://discourse.flathub.org/'>Forum</a>
           </div>
 
-          <Link href='/about'>
+          <Link href='/about' passHref>
             <div className='nav-item'>About</div>
           </Link>
         </div>

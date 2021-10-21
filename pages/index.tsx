@@ -38,7 +38,7 @@ export default function Home({
           <a href='https://flatpak.org/setup/' className='primary-button'>
             Quick setup
           </a>
-          <Link href='/apps'>
+          <Link href='/apps' passHref>
             <div className='primary-button'>Browse the apps</div>
           </Link>
         </div>

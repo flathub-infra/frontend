@@ -38,25 +38,27 @@ const ApplicationCollection: FunctionComponent<Props> = ({
       </Head>
       <div className='collection-wrapper'>
         <aside>
-          <section className="side-menu-section">
+          <section className='side-menu-section'>
             <h3>Discover</h3>
-            <Link href='/apps/collection/popular'>
+            <Link href='/apps/collection/popular' passHref>
               <span className='side-menu-link'>Popular</span>
             </Link>
-            <Link href='/apps/collection/recently-updated'>
+            <Link href='/apps/collection/recently-updated' passHref>
               <span className='side-menu-link'>New &amp; Updated</span>
             </Link>
-            <Link href='/apps/collection/editors-choice-apps'>
-              <span className='side-menu-link'>Editor's Choice</span>
+            <Link href='/apps/collection/editors-choice-apps' passHref>
+              <span className='side-menu-link'>Editor&apos;s Choice</span>
             </Link>
-            <Link href='/apps/collection/editors-choice-games'>
-              <span className='side-menu-link'>Editor's Choice Gamess</span>
+            <Link href='/apps/collection/editors-choice-games' passHref>
+              <span className='side-menu-link'>
+                Editor&apos;s Choice Gamess
+              </span>
             </Link>
           </section>
-          <section className="side-menu-section">
+          <section className='side-menu-section'>
             <h3>Categories</h3>
-            {Object.keys(Category).map(category => (
-              <Link href={`/apps/category/${category}`} key={category}>
+            {Object.keys(Category).map((category) => (
+              <Link href={`/apps/category/${category}`} key={category} passHref>
                 <span className='side-menu-link'>{category}</span>
               </Link>
             ))}

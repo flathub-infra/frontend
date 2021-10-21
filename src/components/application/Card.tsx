@@ -1,5 +1,6 @@
 import { FunctionComponent } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import Appstream from '../../types/Appstream'
 
@@ -8,10 +9,10 @@ interface Props {
 }
 
 const ApplicationCard: FunctionComponent<Props> = ({ application }) => (
-  <Link href={`/apps/details/${application.id}`}>
+  <Link href={`/apps/details/${application.id}`} passHref>
     <div className='application-card'>
       <div className='logo'>
-        <img src={application.icon} alt={application.name} />
+        <Image src={application.icon} alt={application.name} />
       </div>
       <div className='summary'>
         <h5>{application.name}</h5>
