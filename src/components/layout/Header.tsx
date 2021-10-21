@@ -31,8 +31,10 @@ const Header = () => {
         <div id='brand'>
           <Link href='/' passHref>
             <Image
-              src='https://flathub.org/assets/themes/flathub/flathub-logo-toolbar.svg'
+              src='/img/logo/flathub-logo-toolbar.svg'
               alt='Flathub'
+              width='112'
+              height='28'
             />
           </Link>
         </div>
