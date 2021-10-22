@@ -22,7 +22,7 @@ const Details: FunctionComponent<Props> = ({ data }) => {
         <header className='container'>
           <div className='logo'>
             <img
-              src={`https://flathub.org//repo/appstream/x86_64/icons/128x128/${data.id}.png`}
+              src={`https://flathub.org/repo/appstream/x86_64/icons/128x128/${data.id}.png`}
               alt='Logo'
             />
           </div>
