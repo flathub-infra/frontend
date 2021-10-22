@@ -1,11 +1,10 @@
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
-
 import Collections from '../../src/types/Collection'
 import fetchCollection from '../../src/fetchers'
 import ApplicationSection from '../../src/components/application/Section'
 import Main from '../../src/components/layout/Main'
 import { APPS_IN_PREVIEW_COUNT } from '../../src/env'
+import { NextSeo } from 'next-seo'
 
 export default function Apps({
   recentlyUpdated,
@@ -15,9 +14,10 @@ export default function Apps({
 }) {
   return (
     <Main>
-      <Head>
-        <title>Flathub—An app store and build service for Linux</title>
-      </Head>
+      <NextSeo
+        title='Applications'
+        description='An app store and build service for Linux'
+      />
       <div className='applications-collection main-container'>
         <div className='collection'>
           <ApplicationSection

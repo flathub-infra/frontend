@@ -1,5 +1,4 @@
 import { GetStaticProps } from 'next'
-import Head from 'next/head'
 import Link from 'next/link'
 
 import Collections from '../src/types/Collection'
@@ -8,6 +7,7 @@ import Main from '../src/components/layout/Main'
 
 import fetchCollection from '../src/fetchers'
 import { APPS_IN_PREVIEW_COUNT } from '../src/env'
+import { NextSeo } from 'next-seo'
 
 export default function Home({
   recentlyUpdated,
@@ -17,16 +17,10 @@ export default function Home({
 }) {
   return (
     <Main>
-      <Head>
-        <title>Flathub—An app store and build service for Linux</title>
-        <meta
-          name='description'
-          content='Find and install hundreds of apps and games for Linux. Enjoy GIMP, GNU Octave, Spotify, Steam and many more!'
-        />
-        <base href='/' />
-
-        <link rel='icon' type='image/png' href='./favicon.png' />
-      </Head>
+      <NextSeo
+        title='Home'
+        description='Find and install hundreds of apps and games for Linux. Enjoy GIMP, GNU Octave, Spotify, Steam and many more!'
+      />
       <div className='main-container'>
         <h1>Apps for Linux, right here</h1>
         <p className='introduction'>
