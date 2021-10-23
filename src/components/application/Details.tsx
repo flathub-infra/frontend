@@ -33,7 +33,11 @@ const Details: FunctionComponent<Props> = ({ data }) => {
           </div>
 
           <div className='install'>
-            <button className='primary-button install-button'>Install</button>
+            <a
+              href={`https://dl.flathub.org/repo/appstream/${data.id}.flatpakref`}
+            >
+              <button className='primary-button install-button'>Install</button>
+            </a>
           </div>
         </header>
         <Carousel
