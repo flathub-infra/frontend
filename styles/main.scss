@@ -7,67 +7,6 @@ div#wrapper {
   flex-direction: column;
 }
 
-header nav {
-  background-color: $main-color;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  height: 64px;
-
-  a {
-    color: inherit;
-
-    &:hover {
-      text-decoration: none;
-    }
-  }
-
-  #brand {
-    margin: auto 0;
-    margin-left: 26px;
-
-    &:hover {
-      cursor: pointer;
-    }
-  }
-
-  #search {
-    display: none;
-
-    input {
-      background-color: $bg-color;
-      padding: 8px;
-      color: grey;
-      border: 0px;
-      border-radius: 6px;
-      width: 100%;
-    }
-
-    width: 520px;
-    height: 38px;
-    margin: auto;
-  }
-
-  #navbar {
-    margin: auto 0;
-    display: flex;
-    flex-direction: row;
-
-    .nav-item {
-      padding: 2px 20px;
-      color: white;
-      font-size: 14px;
-      font-weight: 500;
-      text-transform: uppercase;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-}
-
 .main-container {
   margin: 0 auto;
   max-width: 90%;
@@ -353,8 +292,8 @@ header nav {
       padding-top: 10px;
 
       .install-button {
-        background-color: #3584e4;
-        border-color: #1c71d8;
+        background-color: $main-color;
+        border-color: $main-color-dark;
         height: 42px;
         width: 100px;
         font-size: 1rem;
