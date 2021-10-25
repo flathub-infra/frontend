@@ -109,23 +109,6 @@ div#wrapper {
 .collection-wrapper {
   display: flex;
   flex-direction: row;
-
-  aside {
-    display: flex;
-    flex-direction: column;
-
-    .side-menu-section {
-      display: flex;
-      flex-direction: column;
-
-      h3 {
-        font-size: 110%;
-        line-height: 1;
-        font-weight: 300;
-        text-transform: uppercase;
-      }
-    }
-  }
 }
 
 .applications-section,
