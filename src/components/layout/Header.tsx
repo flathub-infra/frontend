@@ -1,8 +1,9 @@
 import { ChangeEvent, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import styles from './Header.module.scss'
 import { MdMenu, MdMenuOpen } from 'react-icons/md'
+
+import styles from './Header.module.scss'
 
 const Header = () => {
   const router = useRouter()

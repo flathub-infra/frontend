@@ -19,7 +19,7 @@ const ApplicationCollection: FunctionComponent<Props> = ({
   perPage = 32,
 }) => {
   const router = useRouter()
-  const page = parseInt(router.query.page as string) ?? 1
+  const page = parseInt((router.query.page ?? '1') as string)
   const totalPages = Math.ceil(applications.length / perPage)
   const pages = Array.from({ length: totalPages }, (_, i) => i + 1)
 
