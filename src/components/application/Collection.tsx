@@ -1,5 +1,4 @@
 import { FunctionComponent } from 'react'
-import Head from 'next/head'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
@@ -33,9 +32,6 @@ const ApplicationCollection: FunctionComponent<Props> = ({
 
   return (
     <Main>
-      <Head>
-        <title>{title}</title>
-      </Head>
       <div className='collection-wrapper'>
         <aside>
           <section className='side-menu-section'>

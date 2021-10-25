@@ -6,7 +6,7 @@ const About = () => {
   return (
     <Main>
       <NextSeo
-        title='About Flathub—Flathub'
+        title='About'
         description='Flathub aims to be the place to get and distribute apps for Linux. It is powered by Flatpak which allows Flathub apps to run on almost any Linux distribution.'
         openGraph={{
           images: [

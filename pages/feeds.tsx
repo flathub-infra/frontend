@@ -10,7 +10,7 @@ import { NextSeo } from 'next-seo'
 const Feeds = () => (
   <Main>
     <NextSeo
-      title='RSS—Flathub'
+      title='RSS'
       description='Subscribe to RSS feeds from Flathub'
       openGraph={{
         images: [

@@ -12,7 +12,7 @@ const badgeExampleCodeMoinMoin =
 const Badges = () => (
   <Main>
     <NextSeo
-      title='Flathub Official Badges—Flathub'
+      title='Flathub Official Badges'
       description='Official badges to promote your application on Flathub'
       openGraph={{
         images: [
