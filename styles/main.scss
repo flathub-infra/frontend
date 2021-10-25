@@ -17,6 +17,10 @@ header nav {
 
   a {
     color: inherit;
+
+    &:hover {
+      text-decoration: none;
+    }
   }
 
   #brand {
@@ -739,7 +743,53 @@ footer#footer {
     }
   }
 }
-.about {
+
+.badges {
+  .grid-container {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 240px;
+    grid-gap: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    .title {
+      grid-column: 1 / 3;
+    }
+  }
+}
+
+div.pre {
+  display: block;
+  position: relative;
+  padding: 9.5px;
+  padding-right: 40px;
+  margin: 0 0 10px;
+  font-size: 13px !important;
+  line-height: 1.42857143;
+  color: #333333;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow: auto;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace !important;
+
+  button.copy {
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    border: 0px none;
+    background-color: transparent;
+    font-size: 24px;
+
+    &:active {
+      color: #ccc;
+    }
+  }
+}
+
+.about,
+.badges {
   .header-container {
     background: $main-color url('/img/tiles.svg') no-repeat top left;
     color: white;
