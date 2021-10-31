@@ -86,33 +86,6 @@ div#wrapper {
   }
 }
 
-.applications-collection {
-  margin-top: 60px;
-
-  width: 100%;
-  min-height: 750px;
-
-  .collection {
-    width: 100%;
-
-    h2 {
-      font-size: 180%;
-      line-height: 1.1;
-      font-weight: 300;
-      line-height: 2;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-  }
-}
-
-.collection-wrapper {
-  display: flex;
-  flex-direction: row;
-}
-
-.applications-section,
-.applications-collection,
 .categories-section {
   header {
     margin-top: 40px;
@@ -131,7 +104,6 @@ div#wrapper {
     }
   }
 
-  .applications,
   .categories {
     display: grid;
     gap: 16px;
