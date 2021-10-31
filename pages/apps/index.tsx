@@ -5,6 +5,10 @@ import Main from '../../src/components/layout/Main'
 import { APPS_IN_PREVIEW_COUNT } from '../../src/env'
 import { NextSeo } from 'next-seo'
 import ApplicationSections from '../../src/components/application/Sections'
+import Link from 'next/link'
+import Tile from '../../src/components/Tile'
+import Category from '../../src/types/Category'
+import styles from './index.module.scss'
 
 export default function Apps({
   recentlyUpdated,
@@ -19,6 +23,20 @@ export default function Apps({
         description='An app store and build service for Linux'
       />
       <div className='main-container'>
+        <header className={styles.header}>
+          <h3>Categories</h3>
+        </header>
+        <div className={styles.flex}>
+          {Object.keys(Category).map((category) => (
+            <Link
+              key={category}
+              href={`/apps/category/${encodeURIComponent(category)}`}
+              passHref
+            >
+              <Tile>{category}</Tile>
+            </Link>
+          ))}
+        </div>
         <ApplicationSections
           popular={popular}
           recentlyUpdated={recentlyUpdated}
