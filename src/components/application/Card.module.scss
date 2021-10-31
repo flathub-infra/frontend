@@ -1,7 +1,7 @@
 @import '../../../styles/colors';
 
 .applicationCard {
-  background-color: white;
+  background-color: $bg-color;
   grid-column: span 1 / span 1;
 
   border: 1px solid $border;
