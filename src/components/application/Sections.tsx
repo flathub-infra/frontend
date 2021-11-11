@@ -1,6 +1,6 @@
 import { FunctionComponent } from 'react'
 
-import Appstream from '../../types/Appstream'
+import { Appstream } from '../../types/Appstream'
 import ApplicationSection from './Section'
 
 interface Props {

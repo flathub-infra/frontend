@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo'
 import ApplicationSections from '../../src/components/application/Sections'
 import Link from 'next/link'
 import Tile from '../../src/components/Tile'
-import Category from '../../src/types/Category'
+import { Category, categoryToName } from '../../src/types/Category'
 import styles from './index.module.scss'
 
 export default function Apps({
@@ -27,13 +27,13 @@ export default function Apps({
           <h3>Categories</h3>
         </header>
         <div className={styles.flex}>
-          {Object.keys(Category).map((category) => (
+          {Object.keys(Category).map((category: Category) => (
             <Link
               key={category}
               href={`/apps/category/${encodeURIComponent(category)}`}
               passHref
             >
-              <Tile>{category}</Tile>
+              <Tile>{categoryToName(category)}</Tile>
             </Link>
           ))}
         </div>
