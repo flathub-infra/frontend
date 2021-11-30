@@ -1,4 +1,5 @@
 import { createInstance, MatomoProvider } from '@datapunt/matomo-tracker-react'
+import { NextQueryParamProvider } from 'next-query-params'
 import { DefaultSeo } from 'next-seo'
 import { ThemeProvider } from 'next-themes'
 import type { AppProps } from 'next/app'
@@ -19,26 +20,28 @@ const App = ({ Component, pageProps }: AppProps) => {
   return (
     <MatomoProvider value={instance}>
       <ThemeProvider>
-        <DefaultSeo
-          titleTemplate='%s | Flathub'
-          defaultTitle='Flathub'
-          twitter={{
-            site: '@FlatpakApps',
-            cardType: 'summary_large_image',
-          }}
-          openGraph={{
-            type: 'website',
-            locale: 'en_GB',
-            url: process.env.NEXT_PUBLIC_URL,
-            site_name: 'FlatHub',
-            images: [
-              {
-                url: `${IMAGE_BASE_URL}flathub-social.png`,
-              },
-            ],
-          }}
-        />
-        <Component {...pageProps} />
+        <NextQueryParamProvider>
+          <DefaultSeo
+            titleTemplate='%s | Flathub'
+            defaultTitle='Flathub'
+            twitter={{
+              site: '@FlatpakApps',
+              cardType: 'summary_large_image',
+            }}
+            openGraph={{
+              type: 'website',
+              locale: 'en_GB',
+              url: process.env.NEXT_PUBLIC_URL,
+              site_name: 'FlatHub',
+              images: [
+                {
+                  url: `${IMAGE_BASE_URL}flathub-social.png`,
+                },
+              ],
+            }}
+          />
+          <Component {...pageProps} />
+        </NextQueryParamProvider>
       </ThemeProvider>
     </MatomoProvider>
   )
