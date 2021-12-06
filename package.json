@@ -25,7 +25,7 @@
     "react-image-lightbox": "^5.1.4",
     "react-responsive-carousel": "^3.2.22",
     "react-svg-worldmap": "^2.0.0-alpha.0",
-    "sass": "^1.43.3",
+    "sass": "^1.44.0",
     "spdx-license-list": "^6.4.0"
   },
   "devDependencies": {
