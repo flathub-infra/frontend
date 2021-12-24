@@ -1,4 +1,4 @@
-import { Appstream } from './types/Appstream'
+import { AddonAppstream, Appstream, DesktopAppstream } from './types/Appstream'
 import { Collection, Collections } from './types/Collection'
 import { Category } from './types/Category'
 
@@ -13,13 +13,14 @@ import {
   SUMMARY_DETAILS,
   STATS_DETAILS,
   STATS,
+  ADDONS_URL,
 } from './env'
 import { Summary } from './types/Summary'
 import { AppStats } from './types/AppStats'
 import { Stats } from './types/Stats'
 
-export async function fetchAppstream(appId: string): Promise<Appstream> {
-  let entryJson: Appstream
+export async function fetchAppstream(appId: string): Promise<DesktopAppstream> {
+  let entryJson: DesktopAppstream
   try {
     const entryData = await fetch(`${APP_DETAILS(appId)}`)
     entryJson = await entryData.json()
@@ -131,6 +132,17 @@ export async function fetchCategory(category: keyof typeof Category) {
   const items: Appstream[] = await Promise.all(appList.map(fetchAppstream))
 
   console.log('\nCategory', category, ' fetched')
+
+  return items.filter((item) => Boolean(item))
+}
+
+export async function fetchAddons(appid: string) {
+  const appListRes = await fetch(ADDONS_URL(appid))
+  const appList = await appListRes.json()
+
+  const items: AddonAppstream[] = await Promise.all(appList.map(fetchAppstream))
+
+  console.log('\nAddons for ', appid, ' fetched')
 
   return items.filter((item) => Boolean(item))
 }
