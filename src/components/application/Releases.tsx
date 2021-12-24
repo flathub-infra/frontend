@@ -20,7 +20,7 @@ const Releases: FunctionComponent<Props> = ({ releases }) => {
               <header>
                 <h3>Changes in version {latestRelease.version}</h3>
                 <div>
-                  {latestRelease.timestamp &&
+                  updated {latestRelease.timestamp &&
                     formatDistance(
                       new Date(latestRelease.timestamp * 1000),
                       new Date(),

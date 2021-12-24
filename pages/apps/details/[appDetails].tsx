@@ -6,11 +6,13 @@ import {
   fetchAppstream,
   fetchAppStats,
   fetchSummary,
+  fetchAddons,
 } from '../../../src/fetchers'
 import { APPSTREAM_URL } from '../../../src/env'
 import { NextSeo } from 'next-seo'
 import {
-  Appstream,
+  AddonAppstream,
+  DesktopAppstream,
   pickScreenshot,
   Screenshot,
 } from '../../../src/types/Appstream'
@@ -21,15 +23,17 @@ export default function Details({
   data,
   summary,
   stats,
+  addons,
 }: {
-  data: Appstream
+  data: DesktopAppstream
   summary: Summary
   stats: AppStats
+  addons: AddonAppstream[]
 }) {
   const screenshots = data.screenshots
     ? data.screenshots.filter(pickScreenshot).map((screenshot: Screenshot) => ({
-        url: pickScreenshot(screenshot).url,
-      }))
+      url: pickScreenshot(screenshot).url,
+    }))
     : []
 
   return (
@@ -46,7 +50,7 @@ export default function Details({
           ],
         }}
       />
-      <ApplicationDetails data={data} summary={summary} stats={stats} />
+      <ApplicationDetails data={data} summary={summary} stats={stats} addons={addons} />
     </Main>
   )
 }
@@ -58,12 +62,14 @@ export const getStaticProps: GetStaticProps = async ({
   const data = await fetchAppstream(appDetails as string)
   const summary = await fetchSummary(appDetails as string)
   const stats = await fetchAppStats(appDetails as string)
+  const addons = await fetchAddons(appDetails as string)
 
   return {
     props: {
       data,
       summary,
       stats,
+      addons
     },
   }
 }

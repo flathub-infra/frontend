@@ -1,7 +1,11 @@
 import { useMatomo } from '@datapunt/matomo-tracker-react'
 import { FunctionComponent, useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
-import { Appstream, pickScreenshot } from '../../types/Appstream'
+import {
+  AddonAppstream,
+  DesktopAppstream,
+  pickScreenshot,
+} from '../../types/Appstream'
 
 import { Summary } from '../../types/Summary'
 
@@ -18,11 +22,13 @@ import { SoftwareAppJsonLd, VideoGameJsonLd } from 'next-seo'
 import Lightbox from 'react-image-lightbox'
 
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
+import Addons from './Addons'
 
 interface Props {
-  data: Appstream
+  data: DesktopAppstream
   summary: Summary
   stats: AppStats
+  addons: AddonAppstream[]
 }
 
 function categoryToSeoCategories(categories: string[]) {
@@ -58,7 +64,12 @@ function categoryToSeoCategory(category) {
   }
 }
 
-const Details: FunctionComponent<Props> = ({ data, summary, stats }) => {
+const Details: FunctionComponent<Props> = ({
+  data,
+  summary,
+  stats,
+  addons,
+}) => {
   const [showLightbox, setShowLightbox] = useState(false)
   const [currentScreenshot, setCurrentScreenshot] = useState(0)
 
@@ -205,6 +216,12 @@ const Details: FunctionComponent<Props> = ({ data, summary, stats }) => {
           </div>
 
           <Releases releases={data.releases}></Releases>
+
+          {addons.length > 0 && (
+            <div>
+              <Addons addons={addons}></Addons>
+            </div>
+          )}
 
           <AdditionalInfo
             data={data}

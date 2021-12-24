@@ -16,6 +16,8 @@ export const EDITORS_PICKS_APPS_URL: string = `${BASE_URI}/picks/apps`
 export const RECENTLY_UPDATED_URL: string = `${BASE_URI}/collection/recently-updated`
 export const CATEGORY_URL = (category: keyof typeof Category): string =>
   `${BASE_URI}/category/${category}`
+export const ADDONS_URL = (appid: string): string =>
+  `${BASE_URI}/addon/${appid}`
 export const FEED_RECENTLY_UPDATED_URL: string = `${BASE_URI}/feed/recently-updated`
 export const FEED_NEW_URL: string = `${BASE_URI}/feed/new`
 
