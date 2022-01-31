@@ -35,6 +35,7 @@ function categoryToSeoCategories(categories: string[]) {
 
   return categories.map(categoryToSeoCategory).join(' ')
 }
+
 function categoryToSeoCategory(category) {
   switch (category) {
     case 'AudioVideo':
@@ -193,6 +194,8 @@ const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps 
                       alt='Screenshot'
                       loading='eager'
                       priority={index === 0}
+                      placeholder='blur'
+                      blurDataURL={pickedScreenshot.blurhash}
                     />
                   )
                 })}

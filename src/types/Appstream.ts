@@ -68,21 +68,22 @@ export interface Screenshot {
   '752x423'?: string
   '1248x702'?: string
   '1504x846'?: string
+  blurhash?: string
 }
 
 export function pickScreenshot(screenshot: Screenshot) {
   if (screenshot['1504x846']) {
-    return { url: screenshot['1504x846'], width: 1504, height: 846 }
+    return { url: screenshot['1504x846'], width: 1504, height: 846, blurhash: screenshot.blurhash }
   } else if (screenshot['1248x702']) {
-    return { url: screenshot['1248x702'], width: 1248, height: 702 }
+    return { url: screenshot['1248x702'], width: 1248, height: 702, blurhash: screenshot.blurhash }
   } else if (screenshot['752x423']) {
-    return { url: screenshot['752x423'], width: 752, height: 423 }
+    return { url: screenshot['752x423'], width: 752, height: 423, blurhash: screenshot.blurhash }
   } else if (screenshot['624x351']) {
-    return { url: screenshot['624x351'], width: 624, height: 351 }
+    return { url: screenshot['624x351'], width: 624, height: 351, blurhash: screenshot.blurhash }
   } else if (screenshot['224x126']) {
-    return { url: screenshot['224x126'], width: 224, height: 126 }
+    return { url: screenshot['224x126'], width: 224, height: 126, blurhash: screenshot.blurhash }
   } else if (screenshot['112x63']) {
-    return { url: screenshot['112x63'], width: 112, height: 63 }
+    return { url: screenshot['112x63'], width: 112, height: 63, blurhash: screenshot.blurhash }
   } else {
     return undefined
   }
