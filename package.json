@@ -13,7 +13,7 @@
     "@datapunt/matomo-tracker-react": "^0.5.1",
     "chart.js": "^3.7.0",
     "chartjs-adapter-date-fns": "^2.0.0",
-    "date-fns": "^2.27.0",
+    "date-fns": "^2.28.0",
     "next": "^12.0.7",
     "next-seo": "^4.28.1",
     "next-themes": "^0.0.15",
@@ -25,7 +25,7 @@
     "react-image-lightbox": "^5.1.4",
     "react-responsive-carousel": "^3.2.22",
     "react-svg-worldmap": "^2.0.0-alpha.0",
-    "sass": "^1.45.1",
+    "sass": "^1.49.7",
     "spdx-license-list": "^6.4.0"
   },
   "devDependencies": {
