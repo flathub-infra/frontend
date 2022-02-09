@@ -126,7 +126,11 @@ export default async function fetchCollection(
   return items.filter((item) => Boolean(item))
 }
 
-export async function fetchCategory(category: keyof typeof Category, page?: number, per_page?: number): Promise<Appstream[]> {
+export async function fetchCategory(
+  category: keyof typeof Category,
+  page?: number,
+  per_page?: number
+): Promise<Appstream[]> {
   const appListRes = await fetch(CATEGORY_URL(category, page, per_page))
   const appList = await appListRes.json()
 
@@ -164,10 +168,9 @@ export async function fetchDeveloperApps(developer: string | undefined) {
 }
 
 export async function fetchSearchQuery(query: string) {
+  console.log(SEARCH_APP(query))
   const appListRes = await fetch(SEARCH_APP(query))
-  const appList = await appListRes.json()
-
-  console.log("\nSearch for query: '", query, "' fetched")
+  const appList: Appstream[] = await appListRes.json()
 
   return appList.filter((item) => Boolean(item))
 }
