@@ -1,5 +1,5 @@
 import { useMatomo } from '@datapunt/matomo-tracker-react'
-import { FunctionComponent, useState } from 'react'
+import { Dispatch, FunctionComponent, useState } from 'react'
 import { Carousel } from 'react-responsive-carousel'
 import { Appstream, pickScreenshot } from '../../types/Appstream'
 
@@ -20,12 +20,19 @@ import ApplicationSection from './ApplicationSection'
 import LogoImage from '../LogoImage'
 
 import 'react-image-lightbox/style.css' // This only needs to be imported once in your app
+import Select, { ActionMeta } from 'react-select'
 
 interface Props {
   app: Appstream
   summary: Summary
   stats: AppStats
   developerApps: Appstream[]
+  branch: string
+  setBranch: (
+    option: { value: string; label: string } | null,
+    actionMeta: ActionMeta<{ value: string; label: string }>
+  ) => void
+  options: { value: string; label: string }[]
 }
 
 function categoryToSeoCategories(categories: string[]) {
@@ -61,7 +68,15 @@ function categoryToSeoCategory(category) {
   }
 }
 
-const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps }) => {
+const Details: FunctionComponent<Props> = ({
+  app,
+  summary,
+  stats,
+  developerApps,
+  branch,
+  setBranch,
+  options,
+}) => {
   const [showLightbox, setShowLightbox] = useState(false)
   const [currentScreenshot, setCurrentScreenshot] = useState(0)
 
@@ -70,7 +85,10 @@ const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps 
   const installClicked = (e) => {
     e.preventDefault()
     trackEvent({ category: 'App', action: 'Install', name: app.id })
-    window.location.href = `https://dl.flathub.org/repo/appstream/${app.id}.flatpakref`
+    window.location.href =
+      branch === 'stable'
+        ? `https://dl.flathub.org/repo/appstream/${app.id}.flatpakref`
+        : `https://dl.flathub.org/beta-repo/appstream/${app.id}.flatpakref`
   }
 
   const donateClicked = (e) => {
@@ -80,6 +98,15 @@ const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps 
   if (app) {
     const moreThan1Screenshot =
       app.screenshots?.filter(pickScreenshot).length > 1
+
+    const customStyles = {
+      option: (provided, state) => ({
+        ...provided,
+        color: state.isSelected ? 'var(--white)' : 'var(--text-primary)',
+        padding: 18,
+        borderRadius: 'var(--border-radius)',
+      }),
+    }
 
     return (
       <div id={styles.application}>
@@ -99,12 +126,13 @@ const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps 
               Math.round(summary.installed_size / 1_000_000) + ' MB'
             }
           />
-        )
-        }
-        < header >
-          {app.icon && (<div className={styles.logo}>
-            <LogoImage iconUrl={app.icon} appName={app.name} />
-          </div>)}
+        )}
+        <header>
+          {app.icon && (
+            <div className={styles.logo}>
+              <LogoImage iconUrl={app.icon} appName={app.name} />
+            </div>
+          )}
 
           <div className={styles.details}>
             <h2>{app.name}</h2>
@@ -124,6 +152,40 @@ const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps 
               >
                 <Button type='secondary'>Donate</Button>
               </a>
+            )}
+            {options.length > 1 && (
+              <Select
+                value={options.find((a) => a.value === branch)}
+                onChange={setBranch}
+                options={options}
+                styles={customStyles}
+                theme={(theme) => ({
+                  ...theme,
+                  spacing: {
+                    ...theme.spacing,
+                    controlHeight: 48,
+                  },
+                  borderRadius: 'var(--border-radius)' as unknown as number,
+                  colors: {
+                    ...theme.colors,
+                    primary: 'var(--main-color)',
+                    primary25: 'var(--bg-color-primary)',
+                    primary50: 'var(--bg-color-primary)',
+                    primary75: 'var(--bg-color-primary)',
+                    neutral0: 'var(--bg-color-secondary)',
+                    neutral5: 'var(--text-primary)',
+                    neutral10: 'var(--text-primary)',
+                    neutral20: 'var(--main-color)',
+                    neutral30: 'var(--text-primary)',
+                    neutral40: 'var(--text-primary)',
+                    neutral50: 'var(--text-primary)',
+                    neutral60: 'var(--text-primary)',
+                    neutral70: 'var(--text-primary)',
+                    neutral80: 'var(--main-color-dark)',
+                    neutral90: 'var(--text-primary)',
+                  },
+                })}
+              />
             )}
           </div>
         </header>
@@ -218,12 +280,20 @@ const Details: FunctionComponent<Props> = ({ app, summary, stats, developerApps 
           ></AdditionalInfo>
 
           {developerApps && developerApps.length > 0 && (
-            <ApplicationSection href={`/apps/collection/developer/${app.developer_name}`} title={`Other apps by ${app.developer_name}`} applications={developerApps.slice(0, 6)} showMore={developerApps.length > 6} />
+            <ApplicationSection
+              href={`/apps/collection/developer/${app.developer_name}`}
+              title={`Other apps by ${app.developer_name}`}
+              applications={developerApps.slice(0, 6)}
+              showMore={developerApps.length > 6}
+            />
           )}
 
           <AppStatistics stats={stats}></AppStatistics>
 
-          <CmdInstructions appId={app.id}></CmdInstructions>
+          <CmdInstructions
+            appId={app.id}
+            isStable={branch === 'stable'}
+          ></CmdInstructions>
         </div>
       </div>
     )

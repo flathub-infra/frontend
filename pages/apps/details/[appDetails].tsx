@@ -17,6 +17,8 @@ import {
 } from '../../../src/types/Appstream'
 import { Summary } from '../../../src/types/Summary'
 import { AppStats } from '../../../src/types/AppStats'
+import { useEffect, useState } from 'react'
+import { StringParam, useQueryParam, withDefault } from 'next-query-params'
 
 export default function Details({
   app,
@@ -29,10 +31,37 @@ export default function Details({
   stats: AppStats
   developerApps: Appstream[]
 }) {
+  const [branchParam, setBranchParam] = useQueryParam(
+    'branch',
+    withDefault(StringParam, undefined)
+  )
+
+  function branchChange(event) {
+    if (event.value === 'stable') {
+      setBranchParam(undefined)
+    } else {
+      setBranchParam(event.value)
+    }
+  }
+
+  function getBranch(branch: string | undefined) {
+    return branch === 'beta' ? 'beta' : 'stable'
+  }
+
+  const options: { value: string; label: string }[] = []
+  if (app['stable'] && summary['stable'] && app['beta'] && summary['beta']) {
+    options.push({ value: 'stable', label: 'Stable' })
+    options.push({ value: 'beta', label: 'Beta' })
+  } else if (app['stable'] && summary['stable']) {
+    options.push({ value: 'stable', label: 'Stable' })
+  } else if (app['beta'] && summary['beta']) {
+    options.push({ value: 'beta', label: 'Beta' })
+  }
+
   const screenshots = app.screenshots
     ? app.screenshots.filter(pickScreenshot).map((screenshot: Screenshot) => ({
-      url: pickScreenshot(screenshot).url,
-    }))
+        url: pickScreenshot(screenshot).url,
+      }))
     : []
 
   return (
@@ -50,12 +79,15 @@ export default function Details({
         }}
       />
       <ApplicationDetails
-        app={app}
-        summary={summary}
+        app={app[getBranch(branchParam)]}
+        summary={summary[getBranch(branchParam)]}
         stats={stats}
-        developerApps={developerApps.filter(devApp => devApp.id !== app.id)}
+        branch={getBranch(branchParam)}
+        setBranch={branchChange}
+        options={options}
+        developerApps={developerApps.filter((devApp) => devApp.id !== app.id)}
       />
-    </Main >
+    </Main>
   )
 }
 
@@ -79,7 +111,7 @@ export const getStaticProps: GetStaticProps = async ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const apps = await fetch(APPSTREAM_URL)
+  const apps = await fetch(`${APPSTREAM_URL}?type=stable_and_beta`)
   const appsData: string[] = await apps.json()
   const paths = appsData.map((app) => ({
     params: { appDetails: app },

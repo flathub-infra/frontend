@@ -19,9 +19,12 @@ import {
 import { Summary } from './types/Summary'
 import { AppStats } from './types/AppStats'
 import { Stats } from './types/Stats'
+import { BranchedType } from './types/BranchedType'
 
-export async function fetchAppstream(appId: string): Promise<Appstream> {
-  let entryJson: Appstream
+export async function fetchAppstream(
+  appId: string,
+): Promise<BranchedType<Appstream>> {
+  let entryJson: BranchedType<Appstream>
   try {
     const entryData = await fetch(`${APP_DETAILS(appId)}`)
     entryJson = await entryData.json()
@@ -35,8 +38,10 @@ export async function fetchAppstream(appId: string): Promise<Appstream> {
   return entryJson
 }
 
-export async function fetchSummary(appId: string): Promise<Summary> {
-  let summaryJson: Summary
+export async function fetchSummary(
+  appId: string
+): Promise<BranchedType<Summary>> {
+  let summaryJson: BranchedType<Summary>
   try {
     const summaryData = await fetch(`${SUMMARY_DETAILS(appId)}`)
     summaryJson = await summaryData.json()
@@ -119,22 +124,22 @@ export default async function fetchCollection(
 
   const limitedList = collectionList.slice(0, limit)
 
-  const items: Appstream[] = await Promise.all(limitedList.map(fetchAppstream))
+  const items: BranchedType<Appstream>[] = await Promise.all(limitedList.map(fetchAppstream))
 
   console.log('\nCollection ', collection, ' fetched')
 
-  return items.filter((item) => Boolean(item))
+  return items.map(a=> a && a["stable"]).filter((item) => Boolean(item))
 }
 
 export async function fetchCategory(category: keyof typeof Category, page?: number, per_page?: number): Promise<Appstream[]> {
   const appListRes = await fetch(CATEGORY_URL(category, page, per_page))
   const appList = await appListRes.json()
 
-  const items: Appstream[] = await Promise.all(appList.map(fetchAppstream))
+  const items: BranchedType<Appstream>[] = await Promise.all(appList.map(fetchAppstream))
 
   console.log('\nCategory', category, ' fetched')
 
-  return items.filter((item) => Boolean(item))
+  return items.map(a=> a && a["stable"]).filter((item) => Boolean(item))
 }
 
 export async function fetchDevelopers(): Promise<string[]> {
