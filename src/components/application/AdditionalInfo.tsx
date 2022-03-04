@@ -214,6 +214,20 @@ const AdditionalInfo = ({
           ]}
         />
       )}
+      <ListBox
+        appId={appId}
+        items={[
+          {
+            icon: <MdCloudDownload />,
+            header: t('manifest'),
+            content: {
+              type: 'url',
+              text: data.metadata['Flathub::build_repo'] ?? `https://github.com/flathub/${appId}`,
+              trackAsEvent: "Manifest"
+            },
+          },
+        ]}
+      ></ListBox>
     </div>
   )
 }
