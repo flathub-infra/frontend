@@ -108,5 +108,5 @@ export interface Bundle {
 }
 
 export interface Metadata {
-  'Flathub::build_repo': string
+  'Flathub::manifest': string
 }
