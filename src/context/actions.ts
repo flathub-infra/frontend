@@ -1,7 +1,7 @@
 import { ParsedUrlQuery } from "querystring";
 import { Dispatch } from "react";
 import {
-  LOGIN_PROVIDERS_URL, LOGOUT_URL, USER_DELETION_URL, USER_INFO_URL
+  LOGIN_PROVIDERS_URL, LOGOUT_URL, TOKEN_GENERATION_URL, USER_DELETION_URL, USER_INFO_URL
 } from "../env";
 import { UserStateAction } from "../types/Login";
 
@@ -157,5 +157,48 @@ export async function deleteAccount(
     }
   } else {
     error('A network error occured during deletion. Refresh and try again.')
+  }
+}
+
+
+/**
+ * Generates a token to download a set of apps.
+ * @param token Function to set the token when finished
+ * @param waiting Function to set the async state of the component
+ * @param error Function for displaying errors (usually component state)
+ * @param appids A list of app IDs to generate tokens for
+ */
+ export async function generateTokens(
+  token: Dispatch<string>,
+  waiting: (a: boolean) => void,
+  error: (msg: string) => void,
+  appids: string[],
+) {
+  waiting(true)
+
+  let res: Response
+  try {
+    res = await fetch(TOKEN_GENERATION_URL, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(appids)
+    })
+  } catch {
+    error('A network error occured during token generation. Refresh and try again.')
+    return
+  } finally {
+    waiting(false)
+  }
+
+  if (res.ok) {
+    const data = await res.json()
+    if (data.token) {
+      token(data.token)
+    } else {
+      error(data.message)
+    }
+  } else {
+    error('A network error occured during token generation. Refresh and try again.')
   }
 }
