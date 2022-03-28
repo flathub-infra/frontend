@@ -177,14 +177,5 @@ export async function deleteAccount(
     throw 'network-error-try-again';
   }
 
-  if (res.ok) {
-    const data = await res.json()
-    if (data.token) {
-      token(data.token);
-    } else {
-      throw data.message;
-    }
-  } else {
-    throw 'network-error-try-again';
-  }
+  return await res.json();
 }
