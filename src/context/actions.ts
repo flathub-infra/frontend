@@ -1,7 +1,7 @@
 import { ParsedUrlQuery } from "querystring";
 import { Dispatch } from "react";
 import {
-  LOGIN_PROVIDERS_URL, LOGOUT_URL, USER_DELETION_URL, USER_INFO_URL
+  LOGIN_PROVIDERS_URL, LOGOUT_URL, TOKEN_GENERATION_URL, USER_DELETION_URL, USER_INFO_URL
 } from "../env";
 import { UserStateAction } from "../types/Login";
 
@@ -151,4 +151,31 @@ export async function deleteAccount(
   } else {
     throw 'network-error-try-again'
   }
+}
+
+
+/**
+ * Generates a token to download a set of apps.
+ * @param token Function to set the token when finished
+ * @param waiting Function to set the async state of the component
+ * @param error Function for displaying errors (usually component state)
+ * @param appids A list of app IDs to generate tokens for
+ */
+ export async function generateTokens(
+  token: Dispatch<string>,
+  appids: string[],
+) {
+  let res: Response
+  try {
+    res = await fetch(TOKEN_GENERATION_URL, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(appids)
+    })
+  } catch {
+    throw 'network-error-try-again';
+  }
+
+  return await res.json();
 }
